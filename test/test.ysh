@@ -1,0 +1,13 @@
+#!/usr/bin/env ysh
+
+echo $_this_dir
+
+source $_this_dir/../src/xterm.ysh 
+
+echo $["I'm doubly underscorred" => withStyle(STYLE_DOUBLY_UNDERLINED)]
+
+echo $["I'm clickable!" => withLink("https://www.google.com") => withFg(sgr24(0xff00ff))]
+
+echo $["I'm crossed out" => withStyle(STYLE_CROSSED_OUT)]
+
+echo $[("Style can be" ++ withFg("nested", sgr24(0xff0000)) ++ "lol") => withStyle(STYLE_CROSSED_OUT)]
