@@ -12,14 +12,14 @@ proc display-png-local (path) {
   write -n "${TERM_ESC}_Gf=100,t=f;$path_encoded$TERM_ESC\\"
 }
 
-proc display-png-chunked (path; chunk_size = 4096) {
+proc display-png-chunked (; chunk_size = 4096) {
   if (chunk_size > 4096 or chunk_size < 0 or type(chunk_size) !== 'Int') {
     echo Invalid chunk size: 
     = chunk_size
   }
   var pos = 0
   var first_chunk_param = 'a=T,f=100,' 
-  base64 --wrap=$chunk_size $path | while read -r chunk {
+  base64 --wrap=$chunk_size | while read -r chunk {
     write -n "${TERM_ESC}_G${first_chunk_param}m=1;${chunk}${TERM_ESC}\\"
     if (first_chunk_param !== '') {
       setvar first_chunk_param = ''
