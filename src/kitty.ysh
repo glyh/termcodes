@@ -18,14 +18,12 @@ proc display-image-buffered (path; chunk_size = 4096) {
     = chunk_size
   }
   var pos = 0
-  var first_chunk = true 
+  var first_chunk_param = 'a=T,f=100,' 
   base64 --wrap=$chunk_size $path | while read -r chunk {
-    write -n "${TERM_ESC}_G"
-    if (first_chunk) {
-      write -n 'a=T,f=100,'
-      setvar first_chunk = false
+    write -n "${TERM_ESC}_G${first_chunk_param}m=1;${chunk}${TERM_ESC}\\"
+    if (first_chunk_param !== '') {
+      setvar first_chunk_param = ''
     }
-    write -n "m=1;${chunk}${TERM_ESC}\\"
   }
   write -n "${TERM_ESC}_G;${TERM_ESC}\\"
 }
