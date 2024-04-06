@@ -15,6 +15,7 @@ Originally https://github.com/oilshell/oil/pull/1912
 ### Resources 
 - https://en.wikipedia.org/wiki/ANSI_escape_code
 - https://invisible-island.net/xterm/ctlseqs/ctlseqs.html
+- https://sw.kovidgoyal.net/kitty/graphics-protocol/
 
 ### Preview
 

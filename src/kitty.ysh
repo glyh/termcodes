@@ -5,7 +5,7 @@ module termcodes/kitty || return 0
 source $_this_dir/ansi.ysh 
 
 # NOTE: Reference
-# - https://sw.kovidgoyal.net/kitty/graphics-protocol/
+# - https://sw.kovidgoyal.net/kitty/protocol-extensions/
 
 proc display-png-local (path) {
   var path_encoded = $(echo $path | base64 --wrap=0)
