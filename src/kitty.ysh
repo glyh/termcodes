@@ -13,7 +13,10 @@ proc display-png-local (path) {
 }
 
 proc display-png-chunked (; chunk_size = 4096) {
-  if (chunk_size > 4096 or chunk_size < 0 or type(chunk_size) !== 'Int') {
+  if (type(chunk_size) !== 'Int' or 
+      chunk_size > 4096 or 
+      chunk_size < 0 or 
+      chunk_size % 4 !== 0) {
     echo Invalid chunk size: 
     = chunk_size
   }
