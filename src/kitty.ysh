@@ -1,3 +1,5 @@
+#!/usr/bin/env ysh
+
 module termcodes/kitty || return 0
 
 source $_this_dir/ansi.ysh 
@@ -6,7 +8,8 @@ source $_this_dir/ansi.ysh
 # - https://sw.kovidgoyal.net/kitty/graphics-protocol/
 
 proc display-image (path) {
-  var data = $(base64 $path)
+  echo $path
+  var data = $(base64 --wrap=0 $path)
   # echo $data
   var pos = 0
   var chunk_size = 4096
