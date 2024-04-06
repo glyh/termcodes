@@ -7,12 +7,12 @@ source $_this_dir/ansi.ysh
 # NOTE: Reference
 # - https://sw.kovidgoyal.net/kitty/graphics-protocol/
 
-proc display-image-local (path) {
+proc display-png-local (path) {
   var path_encoded = $(echo $path | base64 --wrap=0)
   write -n "${TERM_ESC}_Gf=100,t=f;$path_encoded$TERM_ESC\\"
 }
 
-proc display-image-chunked (path; chunk_size = 4096) {
+proc display-png-chunked (path; chunk_size = 4096) {
   if (chunk_size > 4096 or chunk_size < 0 or type(chunk_size) !== 'Int') {
     echo Invalid chunk size: 
     = chunk_size
