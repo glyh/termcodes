@@ -8,10 +8,10 @@ source $_this_dir/ansi.ysh
 # - https://invisible-island.net/xterm/ctlseqs/ctlseqs.html
 
 func srgRgb(r, g, b) {
-  var channelName = ['Red', 'Green', 'Blue']
+  var channel_name = ['Red', 'Green', 'Blue']
   for channel in $r $g $b {
     if (channel < 0 or channel > 255) {
-      echo Channel $channelName has value $channel which is out of range of [0, 255].
+      echo Channel $channel_name has value $channel which is out of range of [0, 255].
       exit 1
     }
   }
