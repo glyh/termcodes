@@ -12,9 +12,12 @@ proc display-image-local (path) {
   write -n "${TERM_ESC}_Gf=100,t=f;$pathEncoded$TERM_ESC\\"
 }
 
-proc display-image-buffered (path) {
+proc display-image-buffered (path; chunk_size = 4096) {
+  if (chunk_size > 4096 or chunk_size < 0 or type(chunk_size) !== 'Int') {
+    echo Invalid chunk size: 
+    = chunk_size
+  }
   var pos = 0
-  var chunk_size = 4096
   var first_chunk = true 
   base64 --wrap=$chunk_size $path | while read -r chunk {
     write -n "${TERM_ESC}_G"
