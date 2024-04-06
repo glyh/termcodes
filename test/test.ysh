@@ -1,7 +1,5 @@
 #!/usr/bin/env ysh
 
-echo $_this_dir
-
 source $_this_dir/../src/xterm.ysh 
 
 echo $["I'm doubly underscorred" => withStyle(STYLE_DOUBLY_UNDERLINED)]

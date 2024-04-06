@@ -25,5 +25,5 @@ echo $["I'm clickable!" => withLink("https://www.google.com") => withFg(sgr24(0x
 echo $["I'm crossed out" => withStyle(STYLE_CROSSED_OUT)]
 ```
 
-![image](https://github.com/oilshell/oil/assets/12870742/807389e0-b75f-4372-9938-f34ee81bbe87)
+![image](./res/screenshot.png)
 
