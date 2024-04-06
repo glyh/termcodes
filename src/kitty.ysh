@@ -8,11 +8,11 @@ source $_this_dir/ansi.ysh
 # - https://sw.kovidgoyal.net/kitty/graphics-protocol/
 
 proc display-image-local (path) {
-  var pathEncoded = $(echo $path | base64)
-  write -n "${TERM_ESC}_Gf=100,t=f;$pathEncoded$TERM_ESC\\"
+  var path_encoded = $(echo $path | base64 --wrap=0)
+  write -n "${TERM_ESC}_Gf=100,t=f;$path_encoded$TERM_ESC\\"
 }
 
-proc display-image-buffered (path; chunk_size = 4096) {
+proc display-image-chunked (path; chunk_size = 4096) {
   if (chunk_size > 4096 or chunk_size < 0 or type(chunk_size) !== 'Int') {
     echo Invalid chunk size: 
     = chunk_size
