@@ -8,24 +8,22 @@ source $_this_dir/ansi.ysh
 # - https://sw.kovidgoyal.net/kitty/graphics-protocol/
 
 proc display-image (path) {
-  echo $path
   var data = $(base64 --wrap=0 $path)
   # echo $data
   var pos = 0
   var chunk_size = 4096
   while (pos < len(data)) {
-    builtin printf '\e_G'
+    write -n "${TERM_ESC}_G"
     if (pos === 0) {
-      builtin printf 'a=T,f=100,'
+      write -n 'a=T,f=100,'
     }
     var chunk = data[pos:pos+chunk_size]
     setvar pos += chunk_size 
     if (pos < len(data)) {
-      builtin printf "m=1"
+      write -n 'm=1'
     }
     if (len(chunk) > 0) {
-      # write -n ";$chunk"
-      builtin printf ";%s" "${chunk}"
+      write -n ";${chunk}"
     }
     write -n "${TERM_ESC}\\"
   }
