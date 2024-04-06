@@ -12,7 +12,7 @@ proc display-png-local (path) {
   write -n "${TERM_ESC}_Gf=100,t=f;$path_encoded$TERM_ESC\\"
 }
 
-proc display-png-chunked (; chunk_size = 4096) {
+proc display-png-chunked (;; chunk_size = 4096) {
   if (type(chunk_size) !== 'Int' or 
       chunk_size > 4096 or 
       chunk_size < 0 or 
