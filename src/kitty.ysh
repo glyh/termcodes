@@ -1,0 +1,29 @@
+module termcodes/kitty || return 0
+
+source $_this_dir/ansi.ysh 
+
+# NOTE: Reference
+# - https://sw.kovidgoyal.net/kitty/graphics-protocol/
+
+proc display-image (path) {
+  var data = $(base64 $path)
+  # echo $data
+  var pos = 0
+  var chunk_size = 4096
+  while (pos < len(data)) {
+    builtin printf '\e_G'
+    if (pos === 0) {
+      builtin printf 'a=T,f=100,'
+    }
+    var chunk = data[pos:pos+chunk_size]
+    setvar pos += chunk_size 
+    if (pos < len(data)) {
+      builtin printf "m=1"
+    }
+    if (len(chunk) > 0) {
+      # write -n ";$chunk"
+      builtin printf ";%s" "${chunk}"
+    }
+    write -n "${TERM_ESC}\\"
+  }
+}

@@ -1,19 +1,11 @@
 #!/usr/bin/env ysh
 
-module termcodes || return 0
+module termcodes/xterm || return 0
+
+source $_this_dir/ansi.ysh 
 
 # NOTE: Reference
-# - https://en.wikipedia.org/wiki/ANSI_escape_code#C0_control_codes
 # - https://invisible-island.net/xterm/ctlseqs/ctlseqs.html
-
-const TERM_BEL = u'\u{07}'
-const TERM_BS  = u'\u{08}'
-const TERM_HT  = u'\u{09}'
-const TERM_LF  = u'\u{0A}'
-const TERM_FF  = u'\u{0C}'
-const TERM_CR  = u'\u{0D}'
-const TERM_ESC = u'\u{1B}'
-const TERM_CSI = "$TERM_ESC["
 
 func srgRgb(r, g, b) {
   var channelName = ['Red', 'Green', 'Blue']
