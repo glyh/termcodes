@@ -7,24 +7,22 @@ source $_this_dir/ansi.ysh
 # NOTE: Reference
 # - https://sw.kovidgoyal.net/kitty/graphics-protocol/
 
-proc display-image (path) {
-  var data = $(base64 --wrap=0 $path)
-  # echo $data
+proc display-image-local (path) {
+  var pathEncoded = $(echo $path | base64)
+  write -n "${TERM_ESC}_Gf=100,t=f;$pathEncoded$TERM_ESC\\"
+}
+
+proc display-image-buffered (path) {
   var pos = 0
   var chunk_size = 4096
-  while (pos < len(data)) {
+  var first_chunk = true 
+  base64 --wrap=$chunk_size $path | while read -r chunk {
     write -n "${TERM_ESC}_G"
-    if (pos === 0) {
+    if (first_chunk) {
       write -n 'a=T,f=100,'
+      setvar first_chunk = false
     }
-    var chunk = data[pos:pos+chunk_size]
-    setvar pos += chunk_size 
-    if (pos < len(data)) {
-      write -n 'm=1'
-    }
-    if (len(chunk) > 0) {
-      write -n ";${chunk}"
-    }
-    write -n "${TERM_ESC}\\"
+    write -n "m=1;${chunk}${TERM_ESC}\\"
   }
+  write -n "${TERM_ESC}_G;${TERM_ESC}\\"
 }
