@@ -18,12 +18,5 @@ Originally https://github.com/oilshell/oil/pull/1912
 
 ### Preview
 
-```
-source ./draft-termcodes/xterm.ysh 
-echo $["I'm doubly underscorred" => withStyle(STYLE_DOUBLY_UNDERLINED)]
-echo $["I'm clickable!" => withLink("https://www.google.com") => withFg(sgr24(0xff00ff))]
-echo $["I'm crossed out" => withStyle(STYLE_CROSSED_OUT)]
-```
-
-![image](./res/screenshot.png)
+<img src='./res/screenshot.png' width='50%'>
 
