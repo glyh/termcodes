@@ -9,7 +9,7 @@ Originally https://github.com/oilshell/oil/pull/1912
 ### TODOs
 - [ ] Auto adapting colors with `$COLORTERM`
 - [ ] Maybe delegate jobs to `tput` from ncurses if it's present. Since it's not really part of coreutils so this better stay optional. Not sure yet. 
-- [ ] Nesting styles doesn't need to be fixed. 
+- [ ] Make nesting styles work. 
 
 ### Resources 
 - https://en.wikipedia.org/wiki/ANSI_escape_code
